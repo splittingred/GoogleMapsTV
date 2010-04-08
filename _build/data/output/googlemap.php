@@ -74,11 +74,6 @@ if (!empty($params['streetview'])) {
     $params['streetviewPitch'] = !empty($sv[2]) ? (int)trim($sv[2]) : (int)$params['streetviewPitch'];
 }
 
-/* register JS */
-$assetsUrl = $this->xpdo->getOption('googlemapstv.assets_url',null,$this->xpdo->getOption('assets_url').'components/googlemapstv');
-$this->xpdo->regClientStartupScript('http://maps.google.com/maps?file=api&amp;v=2&amp;key='.$params['key'].'&hl='.$params['language']);
-$this->xpdo->regClientStartupScript($assetsUrl.'/gtv.js');
-
 /* create HTML */
 $o = '<div class="'.$params['class'].'" style="width: '.$params['width'].'; height: '.$params['height'].'px">'."\n";
 $o .= !empty($params['directions']) ? '<div class="'.$params['class'].'-directions" id="tvgmap'.$this->get('id').'-dir" style="width: '.$params['directionsWidth'].'px; height: '.$params['height'].'px; float: right;"></div>'."\n" : '';
@@ -89,10 +84,15 @@ $o .= '</div>'."\n";
 
 $params['el'] = 'tvgmap'.$this->get('id');
 $params['address'] = $value;
+$key = $params['key'];
 unset($params['key'],$params['width'],$params['height']);
 $j = $this->xpdo->toJSON($params);
 
+/* register JS */
+$assetsUrl = $this->xpdo->getOption('googlemapstv.assets_url',null,$this->xpdo->getOption('assets_url').'components/googlemapstv');
 $o .= '
+<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key='.$key.'&amp;hl='.$params['language'].'"></script>
+<script type="text/javascript" src="'.$assetsUrl.'/gtv.js"></script>
 <script type="text/javascript">
 // <![CDATA[
 window.onload = function() {GTV.createMap('.$j.');}

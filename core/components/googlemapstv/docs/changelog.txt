@@ -2,5 +2,6 @@ Changelog for GoogleMapsTV.
 
 GoogleMapsTV 1.0 ($LastChangedRevision$, $LastChangedDate$)
 ====================================
+- Fixed bug for cached pages
 - Prepared for rc1 release
 - Initial commit

@@ -36,7 +36,7 @@ set_time_limit(0);
 define('PKG_ABBR','googlemapstv');
 define('PKG_NAME','GoogleMapsTV');
 define('PKG_VERSION','1.0');
-define('PKG_RELEASE','rc1');
+define('PKG_RELEASE','rc2');
 
 /* override with your own defines here (see build.config.sample.php) */
 require_once dirname(__FILE__) . '/build.config.php';
