@@ -1,0 +1,5 @@
+Changelog for GoogleMapsTV.
+
+GoogleMapsTV 1.0 ($LastChangedRevision$, $LastChangedDate$)
+====================================
+- Initial commit

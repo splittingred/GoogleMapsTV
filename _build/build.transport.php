@@ -52,8 +52,12 @@ $sources= array (
     'resolvers' => $root . '_build/resolvers/',
     'data' => $root . '_build/data/',
     'properties' => $root . '_build/properties/',
-    'lexicon' => $root.'_build/lexicon/',
-    'docs' => $root.'_build/docs/',
+    'resolvers' => $root.'_build/resolvers/',
+    'validators' => $root.'_build/validators/',
+    'lexicon' => $root.'core/components/googlemapstv/lexicon/',
+    'docs' => $root.'core/components/googlemapstv/docs/',
+    'source_assets' => $root.'assets/components/googlemapstv',
+    'source_core' => $root.'core/components/googlemapstv',
 );
 unset($root);
 
@@ -67,33 +71,59 @@ $builder = new modPackageBuilder($modx);
 $builder->createPackage(PKG_ABBR,PKG_VERSION,PKG_RELEASE);
 $builder->registerNamespace(PKG_ABBR,false,true,'{core_path}components/'.PKG_ABBR.'/');
 
-/* create files vehicles */
-
-$attributes = array (
-    'vehicle_class' => 'xPDOFileVehicle',
+/* load system settings */
+$modx->log(modX::LOG_LEVEL_INFO,'Packaging in System Settings...');
+$settings = include $sources['data'].'transport.settings.php';
+if (!is_array($settings)) $modx->log(modX::LOG_LEVEL_ERROR,'Could not package in settings.');
+$attributes= array(
+    xPDOTransport::UNIQUE_KEY => 'key',
+    xPDOTransport::PRESERVE_KEYS => true,
+    xPDOTransport::UPDATE_OBJECT => false,
 );
-$files[] = array (
-    'source' => $sources['data']. 'output/googlemap.php',
-    'target' => "return MODX_CORE_PATH . 'model/modx/processors/element/tv/renders/web/output/';",
-);
-$files[] = array (
-    'source' => $sources['data'] . 'properties/googlemap.php',
-    'target' => "return MODX_CORE_PATH . 'model/modx/processors/element/tv/renders/mgr/properties/';",
-);
-$files[] = array (
-    'source' => $sources['data'].'properties/googlemap.tpl',
-    'target' => "return MODX_MANAGER_PATH . 'templates/default/element/tv/renders/properties/';",
-);
-foreach ($files as $fileset) {
-    $package->put($fileset, $attributes);
+$i = 0;
+foreach ($settings as $setting) {
+    $vehicle = $builder->createVehicle($setting,$attributes);
+    if ($i == 0) {
+        $vehicle->validate('php',array(
+            'source' => $sources['validators'] . 'paths.validator.php',
+        ));
+        $vehicle->resolve('file',array(
+            'source' => $sources['source_core'],
+            'target' => "return MODX_CORE_PATH . 'components/';",
+        ));
+        $vehicle->resolve('file',array(
+            'source' => $sources['source_assets'],
+            'target' => "return MODX_ASSETS_PATH . 'components/';",
+        ));
+        $vehicle->resolve('file',array(
+            'source' => $sources['data']. 'output/googlemap.php',
+            'target' => "return MODX_CORE_PATH . 'model/modx/processors/element/tv/renders/web/output/';",
+        ));
+        $vehicle->resolve('file',array(
+            'source' => $sources['data'] . 'properties/googlemap.php',
+            'target' => "return MODX_CORE_PATH . 'model/modx/processors/element/tv/renders/mgr/properties/';",
+        ));
+        $vehicle->resolve('file',array(
+            'source' => $sources['data'].'properties/googlemap.tpl',
+            'target' => "return MODX_MANAGER_PATH . 'templates/default/element/tv/renders/properties/';",
+        ));
+        $vehicle->resolve('php',array(
+            'source' => $sources['resolvers'] . 'setupoptions.resolver.php',
+        ));
+    }
+    $builder->putVehicle($vehicle);
+    $i++;
 }
-$builder->putVehicle($vehicle);
-unset ($files,$fileset,$attributes);
+unset($settings,$setting,$attributes);
 
 /* now pack in the license file, readme and setup options */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding package attributes and setup options...');
 $builder->setPackageAttributes(array(
     'license' => file_get_contents($sources['docs'] . 'license.txt'),
     'readme' => file_get_contents($sources['docs'] . 'readme.txt'),
+    'setup-options' => array(
+        'source' => $sources['build'].'setup.options.php',
+    ),
 ));
 
 $builder->pack();

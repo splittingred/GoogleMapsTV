@@ -18,7 +18,8 @@ MODx.load({
     ,border: false
     ,items: [{
         xtype: 'textfield'
-        ,fieldLabel: _('class')
+        ,fieldLabel: '{/literal}{$lang.class}{literal}'
+        ,description: '{/literal}{$lang.class_desc}{literal}'
         ,name: 'prop_class'
         ,id: 'prop_class'+tv
         ,value: params['class'] || 'gmaptv'
@@ -26,7 +27,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'textfield'
-        ,fieldLabel: _('width')
+        ,fieldLabel: '{/literal}{$lang.width}{literal}'
+        ,description: '{/literal}{$lang.width_desc}{literal}'
         ,name: 'prop_width'
         ,id: 'prop_width'+tv
         ,value: params['width'] || 600
@@ -34,7 +36,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'textfield'
-        ,fieldLabel: _('height')
+        ,fieldLabel: '{/literal}{$lang.height}{literal}'
+        ,description: '{/literal}{$lang.height_desc}{literal}'
         ,name: 'prop_height'
         ,id: 'prop_style'+tv
         ,value: params['height'] || 400
@@ -42,7 +45,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'numberfield'
-        ,fieldLabel: 'Zoom Level'
+        ,fieldLabel: '{/literal}{$lang.zoom_level}{literal}'
+        ,description: '{/literal}{$lang.zoom_level_desc}{literal}'
         ,name: 'prop_zoom'
         ,id: 'prop_zoom'+tv
         ,value: params['zoom'] || 14
@@ -50,8 +54,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'textfield'
-        ,fieldLabel: 'Map Controls'
-        ,description: 'A comma-separated list of google controls.'
+        ,fieldLabel: '{/literal}{$lang.map_controls}{literal}'
+        ,description: '{/literal}{$lang.map_controls_desc}{literal}'
         ,name: 'prop_controls'
         ,id: 'prop_controls'+tv
         ,value: params['mapControl'] || 'GLargeMapControl3D,GOverviewMapControl,GMapTypeControl'
@@ -59,7 +63,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'combo-boolean'
-        ,fieldLabel: 'Info Window'
+        ,fieldLabel: '{/literal}{$lang.info_window}{literal}'
+        ,description: '{/literal}{$lang.info_window_desc}{literal}'
         ,name: 'prop_infoWindow'
         ,id: 'prop_infoWindow'+tv
         ,value: params['infoWindow'] || 0
@@ -67,7 +72,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'combo-boolean'
-        ,fieldLabel: 'Search'
+        ,fieldLabel: '{/literal}{$lang.search}{literal}'
+        ,description: '{/literal}{$lang.search_desc}{literal}'
         ,name: 'prop_search'
         ,id: 'prop_search'+tv
         ,value: params['search'] || 0
@@ -75,7 +81,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'combo-boolean'
-        ,fieldLabel: 'Label Control'
+        ,fieldLabel: '{/literal}{$lang.label_control}{literal}'
+        ,description: '{/literal}{$lang.label_control_desc}{literal}'
         ,name: 'prop_labelControl'
         ,id: 'prop_labelControl'+tv
         ,value: params['labelControl'] || 0
@@ -83,7 +90,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'combo-boolean'
-        ,fieldLabel: 'Traffic'
+        ,fieldLabel: '{/literal}{$lang.traffic}{literal}'
+        ,description: '{/literal}{$lang.traffic_desc}{literal}'
         ,name: 'prop_traffic'
         ,id: 'prop_traffic'+tv
         ,value: params['traffic'] || 0
@@ -91,7 +99,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'combo-boolean'
-        ,fieldLabel: 'Custom Icon'
+        ,fieldLabel: '{/literal}{$lang.custom_icon}{literal}'
+        ,description: '{/literal}{$lang.custom_icon_desc}{literal}'
         ,name: 'prop_customIcon'
         ,id: 'prop_customIcon'+tv
         ,value: params['customIcon'] || 0
@@ -99,7 +108,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'textfield'
-        ,fieldLabel: 'Icon Image URL'
+        ,fieldLabel: '{/literal}{$lang.icon_image_url}{literal}'
+        ,description: '{/literal}{$lang.icon_image_url_desc}{literal}'
         ,name: 'prop_iconImage'
         ,id: 'prop_iconImage'+tv
         ,value: params['iconImage'] || ''
@@ -107,7 +117,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'combo-boolean'
-        ,fieldLabel: 'Street View'
+        ,fieldLabel: '{/literal}{$lang.streetview}{literal}'
+        ,description: '{/literal}{$lang.streetview_desc}{literal}'
         ,name: 'prop_streetview'
         ,id: 'prop_streetview'+tv
         ,value: params['streetview'] || 0
@@ -115,7 +126,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'textfield'
-        ,fieldLabel: 'Street View Height'
+        ,fieldLabel: '{/literal}{$lang.streetview_height}{literal}'
+        ,description: '{/literal}{$lang.streetview_height_desc}{literal}'
         ,name: 'prop_streetviewHeight'
         ,id: 'prop_streetviewHeight'+tv
         ,value: params['streetviewHeight'] || 300
@@ -123,7 +135,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'numberfield'
-        ,fieldLabel: 'Street View Yaw'
+        ,fieldLabel: '{/literal}{$lang.streetview_yaw}{literal}'
+        ,description: '{/literal}{$lang.streetview_yaw_desc}{literal}'
         ,name: 'prop_streetviewYa'
         ,id: 'prop_streetviewYaw'+tv
         ,value: params['streetviewYaw'] || 5
@@ -131,7 +144,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'numberfield'
-        ,fieldLabel: 'Street View Pitch'
+        ,fieldLabel: '{/literal}{$lang.streetview_pitch}{literal}'
+        ,description: '{/literal}{$lang.streetview_pitch_desc}{literal}'
         ,name: 'prop_streetviewPitch'
         ,id: 'prop_streetviewPitch'+tv
         ,value: params['streetviewPitch'] || 0
@@ -139,7 +153,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'combo-boolean'
-        ,fieldLabel: 'Show User Photos'
+        ,fieldLabel: '{/literal}{$lang.show_user_photos}{literal}'
+        ,description: '{/literal}{$lang.show_user_photos_desc}{literal}'
         ,name: 'prop_streetviewUserPhotos'
         ,id: 'prop_streetviewUserPhotos'+tv
         ,value: params['streetviewUserPhotos'] || 0
@@ -147,7 +162,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'combo-boolean'
-        ,fieldLabel: 'Show Advertisements'
+        ,fieldLabel: '{/literal}{$lang.ads}{literal}'
+        ,description: '{/literal}{$lang.ads_desc}{literal}'
         ,name: 'prop_ads'
         ,id: 'prop_ads'+tv
         ,value: params['ads'] || 0
@@ -155,7 +171,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'numberfield'
-        ,fieldLabel: 'Max Ads on Map'
+        ,fieldLabel: '{/literal}{$lang.max_ads}{literal}'
+        ,description: '{/literal}{$lang.max_ads_desc}{literal}'
         ,name: 'prop_adsMaxOnMap'
         ,id: 'prop_adsMaxOnMap'+tv
         ,value: params['adsMaxOnMap'] || 2
@@ -163,7 +180,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'textfield'
-        ,fieldLabel: 'Ads Publisher ID'
+        ,fieldLabel: '{/literal}{$lang.ads_publisher_id}{literal}'
+        ,description: '{/literal}{$lang.ads_publisher_id_desc}{literal}'
         ,name: 'prop_adsPublisher'
         ,id: 'prop_adsPublisher'+tv
         ,value: params['adsPublisher'] || ''
@@ -171,7 +189,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'textfield'
-        ,fieldLabel: 'Ads Channel'
+        ,fieldLabel: '{/literal}{$lang.ads_channel}{literal}'
+        ,description: '{/literal}{$lang.ads_channel_desc}{literal}'
         ,name: 'prop_adsChannel'
         ,id: 'prop_adsChannel'+tv
         ,value: params['adsChannel'] || ''
@@ -179,7 +198,8 @@ MODx.load({
         ,listeners: oc
     },{
         xtype: 'combo-boolean'
-        ,fieldLabel: 'Avoid Highways in Directions'
+        ,fieldLabel: '{/literal}{$lang.avoid_highways}{literal}'
+        ,description: '{/literal}{$lang.avoid_highways_desc}{literal}'
         ,name: 'prop_avoidHighways'
         ,id: 'prop_avoidHighways'+tv
         ,value: params['avoidHighways'] || 0
