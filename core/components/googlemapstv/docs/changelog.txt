@@ -2,4 +2,5 @@ Changelog for GoogleMapsTV.
 
 GoogleMapsTV 1.0 ($LastChangedRevision$, $LastChangedDate$)
 ====================================
+- Prepared for rc1 release
 - Initial commit

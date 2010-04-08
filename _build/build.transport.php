@@ -116,6 +116,10 @@ foreach ($settings as $setting) {
 }
 unset($settings,$setting,$attributes);
 
+/* load lexicon strings */
+$modx->log(modX::LOG_LEVEL_INFO,'Adding in Lexicon.'); flush();
+$builder->buildLexicon($sources['lexicon']);
+
 /* now pack in the license file, readme and setup options */
 $modx->log(modX::LOG_LEVEL_INFO,'Adding package attributes and setup options...');
 $builder->setPackageAttributes(array(

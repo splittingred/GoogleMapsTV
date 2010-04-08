@@ -26,6 +26,7 @@
  * @package googlemapstv
  * @subpackage build
  */
+$success = true;
 if ($object->xpdo) {
     switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         case xPDOTransport::ACTION_INSTALL:
@@ -38,6 +39,9 @@ if ($object->xpdo) {
             );
             foreach ($directories as $dir) {
                 @chmod($dir,0775);
+                if (!is_writable($dir)) {
+                    $success = false;
+                }
             }
 
             break;
@@ -45,4 +49,4 @@ if ($object->xpdo) {
             break;
     }
 }
-return true;
+return $success;
