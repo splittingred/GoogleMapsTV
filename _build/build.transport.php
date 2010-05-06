@@ -36,7 +36,7 @@ set_time_limit(0);
 define('PKG_ABBR','googlemapstv');
 define('PKG_NAME','GoogleMapsTV');
 define('PKG_VERSION','1.0');
-define('PKG_RELEASE','rc2');
+define('PKG_RELEASE','rc3');
 
 /* override with your own defines here (see build.config.sample.php) */
 require_once dirname(__FILE__) . '/build.config.php';
@@ -115,10 +115,6 @@ foreach ($settings as $setting) {
     $i++;
 }
 unset($settings,$setting,$attributes);
-
-/* load lexicon strings */
-$modx->log(modX::LOG_LEVEL_INFO,'Adding in Lexicon.'); flush();
-$builder->buildLexicon($sources['lexicon']);
 
 /* now pack in the license file, readme and setup options */
 $modx->log(modX::LOG_LEVEL_INFO,'Adding package attributes and setup options...');
