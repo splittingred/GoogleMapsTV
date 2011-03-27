@@ -119,7 +119,16 @@ var GTV = function() {
             return v === null || v === undefined || ((GTV.isArray(v) && !v.length));
         }
         ,isArray: function(v) {
-            return toString.apply(v) === '[object Array]';
+            //check if v is an object as an array is an object
+            if (typeof v == "object") 
+            {
+              //check the string value of the constructor for an array function
+              var isArray = v.constructor.toString().match(/array/i);
+              return ((isArray != null)?true:false);
+            }
+            //not an object so not an array
+            return false;
+            //toString.apply(v) === '[object Array]';
         }
         
         ,handleNoFlash: function(errorCode) {
